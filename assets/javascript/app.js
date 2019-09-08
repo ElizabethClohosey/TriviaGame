@@ -5,60 +5,62 @@
 
 // Object for all questions, choices and answers
 var triviaQuestions = [
+
+    // question 1 [0]
     {
         question: "What type of galaxy is the Milky Way Galaxy?",
         choices: ["Ellipitical", " Spiral", " Spiral Barred", " Irregular "],
         answer: "Spiral"
     },
-    
+    // question 2 [1]
     {
         question: "What is the largest planet in our solar system?  (Fun fact - this is also my favorite planet",
         choices: ["Earth", " Mars", " Neptune", " Jupiter"],
         answer: "Jupiter"
     },
-
+    // question 3 [2]
     {
-        question: "What is the smallest planet on our solar system?",
+        question: "What is the smallest planet in our solar system?",
         choices: ["Pluto", " Venus", " Sature", " Mercury"],
         answer: "Mercury"
     },
-
+    // question 4 [3]
     {
-        question: "What hads a gravitational pull so strong that even light cannot escape it?",
+        question: "What has a gravitational pull so strong that even light cannot escape it?",
         choices: ["quasar", " nebula", "black hole", " red giants"],
         answer: "black hole"
     },
-
+    // question 5 [4]
     {
-        questions: "What is the Earth's Moon commonly referred to? Hint - It's Latin for Moon and the name of one of my pups",
+        question: "What is the Earth's Moon commonly referred to? Hint - It's Latin for Moon and the name of one of my pups",
         choices: ["Sol", " Terra", " Belatrix", " Luna"],
         answer: "Luna"
     },
-
+    // question 6 [5]
     {
         question: "How much time does it take for the Sun's Rays to reach Earth?",
         choices: ["24 hours", " 365 days", " 8 minutes", " 60 minutes"],
         answer: "8 minutes"
     },
-
+    // question 7 [6]
     {
         question: "Which planet has approximately the same landmass as Earth?",
         choices: ["Venus", " Uranus", " Mars", " Jupiter"],
         answer: "Mars"
     },
-
+    // question 8 [7]
     {
         question: "When was Pluto reclassified from a planet to a dwarf planet? (You're still a planet to me little buddy)",
         choices: ["2006", " 1999", " 2009", " 2012"], 
         answer: "2006"
     },
-
+    // question 9 [8]
     {
         question: "Which planet is known as the Morning Star or the Evening Star?",
         choices: ["Mars", " Mercury", " Saturn", " Venus"],
         answer: "Venus"
     },
-
+    // question 10 [9]
     {
         question: "What was the first planet discovered with the use of a telescope?",
         choices: ["Uranus", " Mars", " Neptune", "Pluto"],
@@ -85,7 +87,8 @@ function displayQuestion () {
     console.log("DISPLAY QUESTION " + gameQuestion);
     console.log("DISPLAY CHOICES " + gameChoices);
 
-    $("#game").html("<h2>" + gameQuestion + gameChoices + "<h2>");
+    $("#question").html("<h2>" + gameQuestion + "<h2>");
+    $("#choices").html("<h3>" + gameChoices + "</h3>");
 
 }
  displayQuestion ();
@@ -94,7 +97,8 @@ function displayQuestion () {
      var gameAnswer = triviaQuestions[currentQuestion].answer;
      console.log("DISPLAY ANSWER " + gameAnswer);
 
-     $("#game").html("<h3>" + gameAnswer + "<h3>");
+     $("#answer").html("<h3>" + gameAnswer + "<h3>");
+     $("#timer").html(timer);
  }
  displayAnswer();
 
@@ -107,7 +111,7 @@ function displayQuestion () {
 
 // function to display images 
 function displayImage() {
-    $("#game").html("<img src=" + images[1] + " width='200px'>");
+    $("#images").html("<img src=" + images[1] + " width='200px'>");
   }
   displayImage();
 
