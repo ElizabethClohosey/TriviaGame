@@ -81,6 +81,7 @@ var correctAnswers = 0;
 var wrongAnswers = 0;
 var intervalID;
 
+// function to display current question 
 function displayQuestion () {
     var gameQuestion = triviaQuestions[currentQuestion].question;
     var gameChoices = triviaQuestions[currentQuestion].choices;
@@ -91,8 +92,9 @@ function displayQuestion () {
     $("#choices").html("<h3>" + gameChoices + "</h3>");
 
 }
- displayQuestion ();
+//  displayQuestion ();
 
+// function to display question answers 
  function displayAnswer() {
      var gameAnswer = triviaQuestions[currentQuestion].answer;
      console.log("DISPLAY ANSWER " + gameAnswer);
@@ -100,20 +102,14 @@ function displayQuestion () {
      $("#answer").html("<h3>" + gameAnswer + "<h3>");
      $("#timer").html(timer);
  }
- displayAnswer();
-
-//  function nextQuestion () {
-//     currentQuestion++;
-//  }
-//  nextQuestion();
-
+//  displayAnswer();
 
 
 // function to display images 
 function displayImage() {
     $("#images").html("<img src=" + images[1] + " width='200px'>");
   }
-  displayImage();
+//   displayImage();
 
 
 
@@ -125,9 +121,13 @@ function displayImage() {
 
 
 
+                    // future functions and stuff 
+// ------------------------------------------------------------------
 
-
-
+//  function nextQuestion () {
+//     currentQuestion++;
+//  }
+//  nextQuestion();
 
 
 //                  Questions/Answers/Images
