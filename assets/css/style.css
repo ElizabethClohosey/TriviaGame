@@ -18,7 +18,22 @@ body {
 
 #timer {
     border: 1px solid red;
-    height: 50px;
+    height: 10%;
+    width: 30%;
+    margin-left: 35%;
+    margin-bottom: 3%;
+}
+
+#wins-losses {
+    border: 1px solid powderblue;
+    height: 15%;
+    width: 30%;
+    margin-left: 35%;
+    margin-bottom: 3%;
+}
+
+img {
+    height: 50%;
     width: 30%;
     margin-left: 35%;
 }
