@@ -3,6 +3,7 @@
 //                     global variables
 // ------------------------------------------------------------
 
+// Object for all questions, choices and answers
 var triviaQuestions = [
     {
         question: "What type of galaxy is the Milky Way Galaxy?",
@@ -53,9 +54,9 @@ var triviaQuestions = [
     },
 
     {
-        question: "What are the most luminous objects in the known Universe?",
-        choices: ["black holes", " stars", " quasars", " planets"],
-        answer: "quasars"
+        question: "Which planet is known as the Morning Star or the Evening Star?",
+        choices: ["Mars", " Mercury", " Saturn", " Venus"],
+        answer: "Venus"
     },
 
     {
@@ -66,6 +67,22 @@ var triviaQuestions = [
 ]; 
 console.log(triviaQuestions);
 // console.log(triviaQuestions[1].choices[3]); output - Jupiter
+
+// array of images  
+var images = ["assets/images/Milky_Way_Galaxy.jpg", "assets/images/Jupiter.jpg", "assets/images/Mercury.jpg", "assets/images/black_hole2.jpg", "assets/images/Luna.jpg", "assets/images/sun.jpg", "assets/images/mars2.jpg", "assets/images/pluto.jpg", "assets/images/venus.jpg", "assets/images/Uranus.jpg"];
+console.log(images);
+
+
+// function to display images 
+function displayImage() {
+    $("#images").html("<img src=" + images[8] + " width='200px'>");
+  }
+  displayImage();
+
+
+
+
+                                    
 
 
 
@@ -104,8 +121,8 @@ console.log(triviaQuestions);
 // When was Pluto reclassified from a planet to a dwarf planet? (You're still a planet to me little buddy)
 //     2006
 
-// What are the most luminous objects in the known Universe?
-//     Quasars
+//  Which planet is known as the Morning Star or the Evening Star?
+//         VENUS
 
 // What was the first planet discovered with the use of a telescope?
 //     Uranus 
