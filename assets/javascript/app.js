@@ -120,13 +120,14 @@ function displayImage() {
 var timerNumber = 5;
 var intervalID;
                                     
-function run() {
-    clearInterval(intervalID);
-    intervalID = setInterval(countDown, 1000);
-} 
-run();
+// function run() {
+    
+// } 
+// run();
 
 function countDown () {
+    clearInterval(intervalID);
+    intervalID = setInterval(countDown, 1000);
     timerNumber--;
     $("#timer").html(timerNumber);
     if (timerNumber === 0) {
@@ -134,12 +135,29 @@ function countDown () {
         $("#alert-text").html("Time Is UP");
     }
 }
-countDown();
+// countDown();
 
 function stop () {
     clearInterval(intervalID);
 }
 
+// ---------------------- Game Start ------------------------
+// function removeStartButton () {
+//     $("#start-button").remove();
+// }
+
+$(document).ready(function(){
+
+    $("#start-button").click(function(){
+        countDown();
+        $("#start-button").remove();
+        displayQuestion();
+    });
+  });
+// $("#start-button").on("click", countDown, remove);
+    // removeStartButton();
+    
+    
 
 
 
