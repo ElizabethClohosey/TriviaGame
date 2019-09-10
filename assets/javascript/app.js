@@ -1,7 +1,6 @@
 // alert("TESTING");
 
-//                     global variables
-// ------------------------------------------------------------
+// ------- global variables for images and questions ---------
 
 // Object for all questions, choices and answers
 var triviaQuestions = [
@@ -81,7 +80,11 @@ var correctAnswers = 0;
 var wrongAnswers = 0;
 var intervalID;
 
-// function to display current question 
+// ------------- end global variables for images and questions -----------
+
+// ------------functions for images and questions ---------------
+
+// function to display current question  and choices
 function displayQuestion () {
     var gameQuestion = triviaQuestions[currentQuestion].question;
     var gameChoices = triviaQuestions[currentQuestion].choices;
@@ -111,10 +114,37 @@ function displayImage() {
   }
 //   displayImage();
 
+// ----------- end functions for images and questions -------------- 
 
-
-
+// ------------------------ Timer -------------------------
+var timerNumber = 5;
+var intervalID;
                                     
+function run() {
+    clearInterval(intervalID);
+    intervalID = setInterval(countDown, 1000);
+} 
+run();
+
+function countDown () {
+    timerNumber--;
+    $("#timer").html(timerNumber);
+    if (timerNumber === 0) {
+        stop();
+        $("#alert-text").html("Time Is UP");
+    }
+}
+countDown();
+
+function stop () {
+    clearInterval(intervalID);
+}
+
+
+
+
+
+
 
 
 
@@ -127,7 +157,10 @@ function displayImage() {
 //  function nextQuestion () {
 //     currentQuestion++;
 //  }
-//  nextQuestion();
+
+// function timerReset () {
+
+// }
 
 
 //                  Questions/Answers/Images
@@ -165,7 +198,7 @@ function displayImage() {
 
 
 
-// click start to start Game
+// click start to start Game (#start).on("click", run)
 // 20 second timer for each question
 // if answer is correct show photo with "correct"
 // if answer is incorrect show photo with "incorrect" and 
