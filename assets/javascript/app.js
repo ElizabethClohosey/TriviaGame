@@ -78,7 +78,6 @@ var currentQuestion = 0;
 var timer = 5;
 var correctAnswers = 0;
 var wrongAnswers = 0;
-var intervalID;
 
 // ------------- end global variables for images and questions -----------
 
@@ -112,7 +111,7 @@ function displayQuestion () {
 function displayImage() {
     $("#images").html("<img src=" + images[1] + " width='200px'>");
   }
-//   displayImage();
+  displayImage();
 
 // ----------- end functions for images and questions -------------- 
 
