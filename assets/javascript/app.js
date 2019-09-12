@@ -93,8 +93,13 @@ function displayQuestion () {
     $("#question").html("<h2>" + gameQuestion + "<h2>");
     $("#choices").html("<h3>" + gameChoices + "</h3>");
 
+    // for (var i = 0; i < gameChoices.length; i++) {
+    //     $(gameChoices).html("<p>" + gameChoices + "<p>");
+    //     console.log("GAME CHOICES " + gameChoices);
+    // }
+    
 }
-//  displayQuestion ();
+ displayQuestion ();
 
 // function to display question answers 
  function displayAnswer() {
@@ -104,7 +109,7 @@ function displayQuestion () {
      $("#answer").html("<h3>" + gameAnswer + "<h3>");
      $("#timer").html(timer);
  }
-//  displayAnswer();
+ displayAnswer();
 
 
 // function to display images 
@@ -134,7 +139,6 @@ function countDown () {
         $("#alert-text").html("Time Is UP");
     }
 }
-// countDown();
 
 function stop () {
     clearInterval(intervalID);
@@ -152,7 +156,11 @@ $(document).ready(function(){
         $("#start-button").remove();
         displayQuestion();
     });
+
+ 
+
   });
+
 // $("#start-button").on("click", countDown, remove);
     // removeStartButton();
     
