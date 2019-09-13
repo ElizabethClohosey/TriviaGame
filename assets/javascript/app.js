@@ -82,16 +82,35 @@ var wrongAnswers = 0;
 // ------------- end global variables for images and questions -----------
 
 // ------------functions for images and questions ---------------
+        
 
 // function to display current question  and choices
 function displayQuestion () {
     var gameQuestion = triviaQuestions[currentQuestion].question;
     var gameChoices = triviaQuestions[currentQuestion].choices;
+    var gameAnswer = triviaQuestions[currentQuestion].answer;
+    console.log("DISPLAY ANSWER " + gameAnswer);
     console.log("DISPLAY QUESTION " + gameQuestion);
     console.log("DISPLAY CHOICES " + gameChoices);
 
-    $("#question").html("<h2>" + gameQuestion + "<h2>");
-    $("#choices").html("<h3>" + gameChoices + "</h3>");
+    $("#question").html(gameQuestion);
+    // $("#choices").html("<h3>" + gameChoices + "</h3>");
+
+    $("#choices").html(result);
+        for (var i = 0; i < gameChoices.length; i++) {
+            
+            // var correctAnswer = questionsAnswers[initialQuestion].answer;
+
+            var result = $("<button>");
+            result.addClass("question-choices");
+            result.attr("data-choices", gameChoices[i]);
+            result.text(gameChoices[i]);
+        
+            $("#choices").prepend(result);
+            console.log(result);
+        }
+
+    
 
     // for (var i = 0; i < gameChoices.length; i++) {
     //     $(gameChoices).html("<p>" + gameChoices + "<p>");
@@ -102,14 +121,14 @@ function displayQuestion () {
  displayQuestion ();
 
 // function to display question answers 
- function displayAnswer() {
-     var gameAnswer = triviaQuestions[currentQuestion].answer;
-     console.log("DISPLAY ANSWER " + gameAnswer);
+//  function displayAnswer() {
+//      var gameAnswer = triviaQuestions[currentQuestion].answer;
+//      console.log("DISPLAY ANSWER " + gameAnswer);
 
-     $("#answer").html("<h3>" + gameAnswer + "<h3>");
-     $("#timer").html(timer);
- }
- displayAnswer();
+//      $("#answer").html("<h3>" + gameAnswer + "<h3>");
+//      $("#timer").html(timer);
+//  }
+//  displayAnswer();
 
 
 // function to display images 
