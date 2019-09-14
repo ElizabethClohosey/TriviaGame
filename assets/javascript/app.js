@@ -72,7 +72,7 @@ var triviaQuestions = [
 var images = ["assets/images/Milky_Way_Galaxy.jpg", "assets/images/Jupiter.jpg", "assets/images/Mercury.jpg", "assets/images/black_hole2.jpg", "assets/images/Luna.jpg", "assets/images/sun.jpg", "assets/images/mars2.jpg", "assets/images/pluto.jpg", "assets/images/venus.jpg", "assets/images/Uranus.jpg"];
 // console.log(images);
 
-// variables for game stats, timer and current game question 
+                        // ---------------- Global Variables ------------------------
 var currentQuestion = 0;
 var currentImage = 0;
 var correctAnswers = 0;
@@ -105,7 +105,6 @@ function displayQuestionAndChoices () {
             console.log(result);
         }
 }
-//  displayQuestion ();
 
 function clearQuestionAndChoices () {
     $("#question").remove();
@@ -119,22 +118,19 @@ function clearQuestionAndChoices () {
         console.log(displayAnswer);
     }
 }
-//  displayAnswer();
 
 // function clearAnswer() {
 //     $("#answer").remove();
 // }
 
-
 // function to display images 
 function displayImage() {
     $("#images").html("<img src=" + images[0] + " width='200px'>");
   }
-//   displayImage();
 
-function clearImages() {
-    
-}
+// function clearImages() {
+//     probably will only be one line no function needed 
+// }
 
 function nextQuestion() {
     currentQuestion = 0;
@@ -142,8 +138,6 @@ function nextQuestion() {
     correctAnswers = 0;
     timerNumber = 5;
 }
-
-
 
 // ------------------------ Timer -------------------------
 function countDown () {
