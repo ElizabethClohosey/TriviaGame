@@ -77,7 +77,7 @@ var currentQuestion = 0;
 var currentImage = 0;
 var correctAnswers = 0;
 var wrongAnswers = 0;
-var timerNumber = 5;
+var timerNumber = 60;
 var intervalID;
 var gameQuestion = triviaQuestions[currentQuestion].question;
 var gameChoices = triviaQuestions[currentQuestion].choices;
