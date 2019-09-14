@@ -121,9 +121,9 @@ function clearQuestionAndChoices () {
 }
 //  displayAnswer();
 
-function clearAnswer() {
-    $("#answer").remove();
-}
+// function clearAnswer() {
+//     $("#answer").remove();
+// }
 
 
 // function to display images 
@@ -143,18 +143,7 @@ function nextQuestion() {
     timerNumber = 5;
 }
 
-// setTimeout(function(){ alert("Hello"); }, 3000);
 
-function timeOut () {
-    setTimeout('', 5000);
-    if (setTimeout === true) {
-    $("#alert-text").remove();
-    }
-}
-// function nextQuestion() {
-//     if (result === gameAnswer);
-//         correctAnswers++;
-// }
 
 // ------------------------ Timer -------------------------
 function countDown () {
@@ -166,7 +155,7 @@ function countDown () {
         stop();
         $("#alert-text").html("Time Is UP");
         displayAnswer(); // show correct answer
-        displayImage(); // showimage
+        $("#images").html("<img src=" + images[0] + " width='200px'>"); // showimage
         clearQuestionAndChoices(); // clear Q/A
     }
 }
@@ -178,9 +167,9 @@ function stop () {
 // ---------------------- Game Start ------------------------
 
 $(document).ready(function(){
-    $("#timer").html(timerNumber);
+    // $("#timer").html(timerNumber);
     $("#start-button").click(function(){
-
+        $("#timer").html(timerNumber);
         countDown();
         $("#start-button").remove();
         displayQuestionAndChoices();
@@ -191,9 +180,9 @@ $(document).ready(function(){
         if (gameChoices === gameAnswer)
             correctAnswer++;
             $("#alert-text").html("CORRECT");
-            displayImage();
+            $("#images").html("<img src=" + images[0] + " width='200px'>");
             // hide time up 
-            clearAnswer(); // hide answer
+            $("#answer").remove(); // hide answer
             clearQuestionAndChoices();
             // idkYet();
             stop();
@@ -225,15 +214,27 @@ $(document).ready(function(){
 
 // }
 
+// setTimeout(function(){ alert("Hello"); }, 3000);
 
+// function timeOut () {
+//     setTimeout('', 5000);
+//     if (setTimeout === true) {
+//     $("#alert-text").remove();
+//     }
+// }
 
 
                                    // to do 
-
+// style more 
 // remove correct (part of reset - clear #alert-text)
 // rename idkYet()
 // make timeout between questions 
-// switch to next question/answer and image group 
+// switch to next question/answer and image group
+// curve heading  
+
+
+
+                                // notes 
 
 // click start to start Game (#start).on("click", run)
 // 20 second timer for each question

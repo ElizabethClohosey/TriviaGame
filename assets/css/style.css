@@ -9,20 +9,47 @@ body {
 }
 
 #game {
-    border: 1px solid white;
+    position: relative;
+    /* border: 1px solid white; */
     width: 50%;
     margin-top: 5%;
     height: 400px;
     margin-left: 25%; 
-    padding-top: 5%;
+    /* padding-top: 5%; */
 }
 
 #timer {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     height: 10%;
     width: 30%;
     margin-left: 35%;
     margin-bottom: 3%;
+}
+
+h1 {
+    background-color: black;
+    opacity: .6;
+    font-size: 4.5em;
+    width:80%;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+
+#start-button {
+    /* border: 1px solid red; */
+    width: 50%;
+    position: absolute;
+    bottom: 150px;
+    left: 150px;
+    
+}
+
+#start {
+    width: 100%;
+    background-color: black;
+    opacity: .6;
+    font-size: 2em;
+    /* position: absolute; */
 }
 
 #wins-losses {
