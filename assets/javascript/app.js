@@ -1,6 +1,5 @@
-// alert("TESTING");
 
-// ------- global variables for images and questions ---------
+// ------- global variables ---------
 
 // Object for all questions, choices and answers
 var triviaQuestions = [
@@ -75,79 +74,89 @@ var images = ["assets/images/Milky_Way_Galaxy.jpg", "assets/images/Jupiter.jpg",
 
 // variables for game stats, timer and current game question 
 var currentQuestion = 0;
-var timer = 5;
+var currentImage = 0;
 var correctAnswers = 0;
 var wrongAnswers = 0;
-
-// ------------- end global variables for images and questions -----------
-
-// ------------functions for images and questions ---------------
-        
-
-// function to display current question  and choices
-function displayQuestion () {
-    var gameQuestion = triviaQuestions[currentQuestion].question;
-    var gameChoices = triviaQuestions[currentQuestion].choices;
-    var gameAnswer = triviaQuestions[currentQuestion].answer;
+var timerNumber = 5;
+var intervalID;
+var gameQuestion = triviaQuestions[currentQuestion].question;
+var gameChoices = triviaQuestions[currentQuestion].choices;
+var gameAnswer = triviaQuestions[currentQuestion].answer;
     console.log("DISPLAY ANSWER " + gameAnswer);
     console.log("DISPLAY QUESTION " + gameQuestion);
     console.log("DISPLAY CHOICES " + gameChoices);
 
+                                // ------------ functions ---------------
+
+// function to display current question  and choices
+function displayQuestionAndChoices () {
     $("#question").html(gameQuestion);
-    // $("#choices").html("<h3>" + gameChoices + "</h3>");
 
     $("#choices").html(result);
-        for (var i = 0; i < gameChoices.length; i++) {
-            
-            // var correctAnswer = questionsAnswers[initialQuestion].answer;
 
+        for (var i = 0; i < gameChoices.length; i++) {
+            // THANK YOU IAN!!!! 
             var result = $("<button>");
             result.addClass("question-choices");
             result.attr("data-choices", gameChoices[i]);
             result.text(gameChoices[i]);
-        
+
             $("#choices").prepend(result);
             console.log(result);
         }
-
-    
-
-    // for (var i = 0; i < gameChoices.length; i++) {
-    //     $(gameChoices).html("<p>" + gameChoices + "<p>");
-    //     console.log("GAME CHOICES " + gameChoices);
-    // }
-    
 }
- displayQuestion ();
+//  displayQuestion ();
 
-// function to display question answers 
-//  function displayAnswer() {
-//      var gameAnswer = triviaQuestions[currentQuestion].answer;
-//      console.log("DISPLAY ANSWER " + gameAnswer);
+function clearQuestionAndChoices () {
+    $("#question").remove();
+    $("#choices").remove();
+}
 
-//      $("#answer").html("<h3>" + gameAnswer + "<h3>");
-//      $("#timer").html(timer);
-//  }
+// function to display answers to question 
+ function displayAnswer() {
+    for (var i = 0; i < gameAnswer.length; i++) {
+        $("#answer").html("<h3>" + gameAnswer + "<h3>");
+        console.log(displayAnswer);
+    }
+}
 //  displayAnswer();
+
+function clearAnswer() {
+    $("#answer").remove();
+}
 
 
 // function to display images 
 function displayImage() {
-    $("#images").html("<img src=" + images[1] + " width='200px'>");
+    $("#images").html("<img src=" + images[0] + " width='200px'>");
   }
-  displayImage();
+//   displayImage();
 
-// ----------- end functions for images and questions -------------- 
+function clearImages() {
+    
+}
+
+function nextQuestion() {
+    currentQuestion = 0;
+    currentImage = 0;
+    correctAnswers = 0;
+    timerNumber = 5;
+}
+
+// setTimeout(function(){ alert("Hello"); }, 3000);
+
+function timeOut () {
+    setTimeout('', 5000);
+    if (setTimeout === true) {
+    $("#alert-text").remove();
+    }
+}
+// function nextQuestion() {
+//     if (result === gameAnswer);
+//         correctAnswers++;
+// }
 
 // ------------------------ Timer -------------------------
-var timerNumber = 5;
-var intervalID;
-                                    
-// function run() {
-    
-// } 
-// run();
-
 function countDown () {
     clearInterval(intervalID);
     intervalID = setInterval(countDown, 1000);
@@ -156,6 +165,9 @@ function countDown () {
     if (timerNumber === 0) {
         stop();
         $("#alert-text").html("Time Is UP");
+        displayAnswer(); // show correct answer
+        displayImage(); // showimage
+        clearQuestionAndChoices(); // clear Q/A
     }
 }
 
@@ -164,24 +176,31 @@ function stop () {
 }
 
 // ---------------------- Game Start ------------------------
-// function removeStartButton () {
-//     $("#start-button").remove();
-// }
 
 $(document).ready(function(){
-
+    $("#timer").html(timerNumber);
     $("#start-button").click(function(){
+
         countDown();
         $("#start-button").remove();
-        displayQuestion();
+        displayQuestionAndChoices();
     });
 
- 
+    $("#choices").click(function(){
 
-  });
+        if (gameChoices === gameAnswer)
+            correctAnswer++;
+            $("#alert-text").html("CORRECT");
+            displayImage();
+            // hide time up 
+            clearAnswer(); // hide answer
+            clearQuestionAndChoices();
+            // idkYet();
+            stop();
+            timeOut();
+    });
+});
 
-// $("#start-button").on("click", countDown, remove);
-    // removeStartButton();
     
     
 
@@ -205,6 +224,26 @@ $(document).ready(function(){
 // function timerReset () {
 
 // }
+
+
+
+
+                                   // to do 
+
+// remove correct (part of reset - clear #alert-text)
+// rename idkYet()
+// make timeout between questions 
+// switch to next question/answer and image group 
+
+// click start to start Game (#start).on("click", run)
+// 20 second timer for each question
+// if answer is correct show photo with "correct"
+// if answer is incorrect show photo with "incorrect" and 
+//     correct answer
+// if time runs out show "time is up" and correct answer
+// at end of game show number of correct answers, incorrect answers
+//     unanswered and Start Over button
+// Start over DOES NOT reload page, it only restarts game
 
 
 //                  Questions/Answers/Images
@@ -239,15 +278,3 @@ $(document).ready(function(){
 
 // What was the first planet discovered with the use of a telescope?
 //     Uranus 
-
-
-
-// click start to start Game (#start).on("click", run)
-// 20 second timer for each question
-// if answer is correct show photo with "correct"
-// if answer is incorrect show photo with "incorrect" and 
-//     correct answer
-// if time runs out show "time is up" and correct answer
-// at end of game show number of correct answers, incorrect answers
-//     unanswered and Start Over button
-// Start over DOES NOT reload page, it only restarts game
