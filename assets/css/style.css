@@ -24,6 +24,8 @@ body {
     width: 30%;
     margin-left: 35%;
     margin-bottom: 3%;
+    text-align: center;
+    font-size: 2em;
 }
 
 h1 {
@@ -55,16 +57,52 @@ h1 {
     /* position: absolute; */
 }
 
-#wins-losses {
+#question {
+    font-size: 1.5em;
+    width: 100%;
+    text-align: center;
+}
+
+#choices {
+    text-align: center;
+}
+
+.question-choices {
+    font-size: 1em;
+}
+
+.question-choices:hover {
+    background-color: black;
+    opacity: .6;
+}
+
+#alert-text {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+#answer {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+h3 {
+    margin-top: 3%;
+}
+
+
+
+/* #wins-losses {
     border: 1px solid powderblue;
     height: 15%;
     width: 30%;
     margin-left: 35%;
     margin-bottom: 3%;
-}
+} */
 
 img {
-    height: 60%;
+    padding-top: 2%;
+    /* height: 80%; */
     width: 40%;
     margin-left: 30%;
 }
