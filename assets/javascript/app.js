@@ -181,7 +181,7 @@ $(document).ready(function(){
             clearQuestionAndChoices();
             // idkYet();
             stop();
-            timeOut();
+            // timeOut();
     });
 });
 
