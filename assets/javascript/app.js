@@ -7,25 +7,25 @@ var triviaQuestions = [
     // question 1 [0]
     {
         question: "What type of galaxy is the Milky Way Galaxy?",
-        choices: ["Ellipitical", " Spiral", " Spiral Barred", " Irregular "],
+        choices: ["Ellipitical", "Spiral", "Spiral Barred", "Irregular "],
         answer: "Spiral"
     },
     // question 2 [1]
     {
         question: "What is the largest planet in our solar system?  (Fun fact - this is also my favorite planet",
-        choices: ["Earth", " Mars", " Neptune", " Jupiter"],
+        choices: ["Earth", "Mars", "Neptune", "Jupiter"],
         answer: "Jupiter"
     },
     // question 3 [2]
     {
         question: "What is the smallest planet in our solar system?",
-        choices: ["Pluto", " Venus", " Sature", " Mercury"],
+        choices: ["Pluto", "Venus", "Sature", "Mercury"],
         answer: "Mercury"
     },
     // question 4 [3]
     {
         question: "What has a gravitational pull so strong that even light cannot escape it?",
-        choices: ["quasar", " nebula", "black hole", " red giants"],
+        choices: ["quasar", "nebula", "black hole", "red giants"],
         answer: "black hole"
     },
     // question 5 [4]
@@ -73,8 +73,8 @@ var images = ["assets/images/Milky_Way_Galaxy.jpg", "assets/images/Jupiter.jpg",
 // console.log(images);
 
                         // ---------------- Global Variables ------------------------
-var currentQuestion = 7;
-var currentImage = 7;
+var currentQuestion = 0;
+var currentImage = 0;
 var correctAnswers = 0;
 var wrongAnswers = 0;
 
@@ -82,10 +82,10 @@ var gameQuestion = triviaQuestions[currentQuestion].question;
 var gameChoices = triviaQuestions[currentQuestion].choices;
 var gameAnswer = triviaQuestions[currentQuestion].answer;
     console.log("DISPLAY ANSWER " + gameAnswer);
-    console.log("DISPLAY QUESTION " + gameQuestion);
-    console.log("DISPLAY CHOICES " + gameChoices);
+    // console.log("DISPLAY QUESTION " + gameQuestion);
+    // console.log("DISPLAY CHOICES " + gameChoices);
     
-var timerNumber = 5;
+var timerNumber = 65;
 var intervalID;
 
 
@@ -93,25 +93,30 @@ var intervalID;
 
 // function to display current question  and choices
 function displayQuestionAndChoices () {
+    clearQuestionAndChoices();
+    gameQuestion = triviaQuestions[currentQuestion].question;
+    gameChoices = triviaQuestions[currentQuestion].choices;
     $("#question").html(gameQuestion);
 
-    $("#choices").html(result);
+    // $("#choices").html(result);
 
         for (var i = 0; i < gameChoices.length; i++) {
+            console.log(gameChoices[i], 'game choice')
             // THANK YOU IAN!!!! 
             var result = $("<button>");
             result.addClass("question-choices");
             result.attr("data-choices", gameChoices[i]);
             result.text(gameChoices[i]);
+        
 
-            $("#choices").prepend(result);
-            console.log(result);
+            $("#choices").append(result);
+            // console.log(result);
         }
 }
 
 function clearQuestionAndChoices () {
-    $("#question").remove();
-    $("#choices").remove();
+    $("#question").empty();
+    $("#choices").empty();
 }
 
 // function to display answers to question 
@@ -121,6 +126,7 @@ function clearQuestionAndChoices () {
         console.log(displayAnswer);
     }
 }
+
                         // only one line delete? ***
 
 // function clearAnswer() {
@@ -158,6 +164,14 @@ function stop () {
     clearInterval(intervalID);
 }
 
+function timeOut () {
+
+}
+// hold triviaQuestions
+// delete images
+// remove text
+
+
 // ---------------------- Game Start ------------------------
 
 $(document).ready(function(){
@@ -169,10 +183,18 @@ $(document).ready(function(){
         displayQuestionAndChoices();
     });
 
-    $("#choices").click(function(){
+    $("#choices").click(function(event){
+        gameAnswer = triviaQuestions[currentQuestion].answer;
+        var userGuess = $(event.target).attr("data-choices");
 
-        if (gameChoices === gameAnswer)
-            correctAnswer++;
+        
+
+        
+        console.log(gameAnswer, "GAME ANSWER");
+        console.log(userGuess, "GAME GUESS");
+        if (userGuess === gameAnswer) {
+            correctAnswers++;
+            console.log(correctAnswers);
             $("#alert-text").html("CORRECT");
             $("#images").html("<img src=" + images[currentImage] + " width='200px'>");
             // $("#images").html("<img src=" + images[5] + " width='200px'>");
@@ -182,6 +204,12 @@ $(document).ready(function(){
             // idkYet();
             stop();
             // timeOut();
+        } 
+
+        currentQuestion++;
+        currentImage++;
+
+        displayQuestionAndChoices();
     });
 });
 
