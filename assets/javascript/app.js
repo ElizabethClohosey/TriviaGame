@@ -129,7 +129,7 @@ function clearQuestionAndChoices () {
 
 // function to display images 
 // function displayImage() {
-//     $("#images").html("<img src=" + images[1] + " width='200px'>");
+//     $("#images").html("<img src=" + images[currentImage] + " width='200px'>");
 //   }
 
 // function clearImages() {
