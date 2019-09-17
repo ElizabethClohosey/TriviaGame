@@ -80,7 +80,7 @@ var gameQuestion = triviaQuestions[currentQuestion].question;
 var gameChoices = triviaQuestions[currentQuestion].choices;
 var gameAnswer = triviaQuestions[currentQuestion].answer;
     
-var timerNumber = 20;
+var timerNumber = 2;
 var intervalID;
 
                     // ------------ functions ---------------
@@ -122,24 +122,29 @@ function clearQuestionAndChoices () {
 
 // ------------------------ Timer -------------------------
 function countDown () {
+    gameAnswer = triviaQuestions[currentQuestion].answer;
     // clearInterval(intervalID);
     // intervalID = setInterval(countDown, 1000);
     timerNumber--;
     $("#timer").html(timerNumber);
     if (timerNumber === 0) {
-        currentImage++;
+        // currentImage++;
         unanswered++;
         stop();
         $("#alert-text").html("Time Is Up");
-        $("#alert-text-correctAnswer").html(gameAnswer);
+        // $("#alert-text-correctAnswer").html(displayAnswer());
         displayAnswer(); // show correct answer
         // try below      ******************************
         $("#images").html("<img src=" + images[currentImage] + " width='200px'>");
         // $("#images").html("<img src=" + images[5] + " width='200px'>"); // showimage
         clearQuestionAndChoices(); // clear Q/A
+        // setTimeout(timeOut, 3000);
+        currentQuestion++;
+        currentImage++;
         setTimeout(timeOut, 3000);
-        
     }
+
+    
 }
 
 function stop () {
@@ -148,7 +153,7 @@ function stop () {
 
 function timeOut () {
     clearInterval(intervalID);
-    timerNumber = 20;
+    timerNumber = 2;
     displayQuestionAndChoices();
     // countDown();
     $("#images").empty();
@@ -162,49 +167,51 @@ function timeOut () {
 
 
 // ---------------------- Game Start ------------------------
+function startGame() {
 
-$(document).ready(function(){
-    // $("#timer").html(timerNumber);
-    
-    $("#start-button").click(function(){
-        $("#timer").html(timerNumber);
-        countDown();
-        $("#start-button").remove();
-        displayQuestionAndChoices();
-    });
-    $("#choices").click(function(event){
-        gameAnswer = triviaQuestions[currentQuestion].answer;
-        var userGuess = $(event.target).attr("data-choices");
-        console.log(gameAnswer, "GAME ANSWER");
-        console.log(userGuess, "USER GUESSED");
-
-        if (userGuess === gameAnswer) {
-            correctAnswers++;
-            console.log("Correct answers total" + " " + correctAnswers);
-
-            $("#alert-text").html("CORRECT");
-            $("#images").html("<img src=" + images[currentImage] + " width='200px'>");
-            $("#answer").empty();
-            clearQuestionAndChoices();
-            stop();
-        } else {
-            wrongAnswers++;
-            console.log("Wrong answer total" + " " + wrongAnswers);
-            $("#alert-text").html("WRONG");
-            $("#alert-text-correctAnswer").html(gameAnswer);
-            // displayAnswer();
-            clearQuestionAndChoices();
-            $("#images").html("<img src=" + images[currentImage] + " width='200px'>");
-            stop();
-        }
+    $(document).ready(function(){
+        // $("#timer").html(timerNumber);
         
+        $("#start-button").click(function(){
+            $("#timer").html(timerNumber);
+            countDown();
+            $("#start-button").remove();
+            displayQuestionAndChoices();
+        });
+        $("#choices").click(function(event){
+            gameAnswer = triviaQuestions[currentQuestion].answer;
+            var userGuess = $(event.target).attr("data-choices");
+            console.log(gameAnswer, "GAME ANSWER");
+            console.log(userGuess, "USER GUESSED");
 
-        currentQuestion++;
-        currentImage++;
-        setTimeout(timeOut, 3000);
+            if (userGuess === gameAnswer) {
+                correctAnswers++;
+                console.log("Correct answers total" + " " + correctAnswers);
+
+                $("#alert-text").html("CORRECT");
+                $("#images").html("<img src=" + images[currentImage] + " width='200px'>");
+                $("#answer").empty();
+                clearQuestionAndChoices();
+                stop();
+            } else {
+                wrongAnswers++;
+                console.log("Wrong answer total" + " " + wrongAnswers);
+                $("#alert-text").html("WRONG");
+                $("#alert-text-correctAnswer").html(gameAnswer);
+                // displayAnswer();
+                clearQuestionAndChoices();
+                $("#images").html("<img src=" + images[currentImage] + " width='200px'>");
+                stop();
+            }
+            
+
+            currentQuestion++;
+            currentImage++;
+            setTimeout(timeOut, 3000);
+        });
     });
-});
-
+}
+startGame();
 
 
                                    // to do 
