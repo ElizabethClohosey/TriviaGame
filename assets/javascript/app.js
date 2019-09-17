@@ -86,7 +86,7 @@ var gameAnswer = triviaQuestions[currentQuestion].answer;
     // console.log("DISPLAY QUESTION " + gameQuestion);
     // console.log("DISPLAY CHOICES " + gameChoices);
     
-var timerNumber = 2;
+var timerNumber = 5;
 var intervalID;
 
 
@@ -161,7 +161,7 @@ function countDown () {
         // $("#images").html("<img src=" + images[5] + " width='200px'>"); // showimage
         clearQuestionAndChoices(); // clear Q/A
         setTimeout(timeOut, 3000);
-
+        
     }
 }
 
@@ -273,7 +273,6 @@ $(document).ready(function(){
 
 
                                    // to do 
-                                   check for end of game function
 // make correct answer click "correct" and incorrect answer click "wrong"
 // make timeout between questions 
 // remove correct, time up and answer (part of reset)
@@ -286,6 +285,11 @@ $(document).ready(function(){
 
 
                                 // notes 
+// fix time === 0 conditional
+// add correct answer to wrong answer screen
+// fix images not synching up with questions on time up
+// end of game stats display
+// reset game without refreshing page
 
 // time out between question and reuslts 
 // at end of game show number of correct answers, incorrect answers
