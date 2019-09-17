@@ -77,6 +77,7 @@ var currentQuestion = 0;
 var currentImage = 0;
 var correctAnswers = 0;
 var wrongAnswers = 0;
+var unanswered = 0;
 
 var gameQuestion = triviaQuestions[currentQuestion].question;
 var gameChoices = triviaQuestions[currentQuestion].choices;
@@ -85,7 +86,7 @@ var gameAnswer = triviaQuestions[currentQuestion].answer;
     // console.log("DISPLAY QUESTION " + gameQuestion);
     // console.log("DISPLAY CHOICES " + gameChoices);
     
-var timerNumber = 65;
+var timerNumber = 2;
 var intervalID;
 
 
@@ -93,6 +94,7 @@ var intervalID;
 
 // function to display current question  and choices
 function displayQuestionAndChoices () {
+    intervalID = setInterval(countDown, 1000);
     clearQuestionAndChoices();
     gameQuestion = triviaQuestions[currentQuestion].question;
     gameChoices = triviaQuestions[currentQuestion].choices;
@@ -145,11 +147,12 @@ function clearQuestionAndChoices () {
 
 // ------------------------ Timer -------------------------
 function countDown () {
-    clearInterval(intervalID);
-    intervalID = setInterval(countDown, 1000);
+    // clearInterval(intervalID);
+    // intervalID = setInterval(countDown, 1000);
     timerNumber--;
     $("#timer").html(timerNumber);
     if (timerNumber === 0) {
+        unanswered++;
         stop();
         $("#alert-text").html("Time Is Up");
         displayAnswer(); // show correct answer
@@ -157,6 +160,8 @@ function countDown () {
         $("#images").html("<img src=" + images[currentImage] + " width='200px'>");
         // $("#images").html("<img src=" + images[5] + " width='200px'>"); // showimage
         clearQuestionAndChoices(); // clear Q/A
+        setTimeout(timeOut, 3000);
+
     }
 }
 
@@ -165,11 +170,17 @@ function stop () {
 }
 
 function timeOut () {
-
+    clearInterval(intervalID);
+    displayQuestionAndChoices();
+    timerNumber = 30;
+    // countDown();
+    $("#images").empty();
+    $("#answer").empty();
+    $("#alert-text").empty();
 }
 // hold triviaQuestions
-// delete images
-// remove text
+// empty images
+// empty text
 
 
 // ---------------------- Game Start ------------------------
@@ -199,17 +210,23 @@ $(document).ready(function(){
             $("#images").html("<img src=" + images[currentImage] + " width='200px'>");
             // $("#images").html("<img src=" + images[5] + " width='200px'>");
             // hide time up 
-            $("#answer").remove(); // hide answer
+            $("#answer").empty(); // hide answer
             clearQuestionAndChoices();
             // idkYet();
             stop();
             // timeOut();
-        } 
+        } else {
+            wrongAnswers++;
+            $("#alert-text").html("WRONG");
+            // displayAnswer();
+            clearQuestionAndChoices();
+            $("#images").html("<img src=" + images[currentImage] + " width='200px'>");
+            stop();
+        }
 
         currentQuestion++;
         currentImage++;
-
-        displayQuestionAndChoices();
+        setTimeout(timeOut, 3000);
     });
 });
 
@@ -256,6 +273,7 @@ $(document).ready(function(){
 
 
                                    // to do 
+                                   check for end of game function
 // make correct answer click "correct" and incorrect answer click "wrong"
 // make timeout between questions 
 // remove correct, time up and answer (part of reset)
