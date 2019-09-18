@@ -22,7 +22,7 @@ var triviaQuestions = [
         choices: ["Pluto", "Venus", "Saturn", "Mercury"],
         answer: "Mercury",
     },
-    // question 4
+    // // question 4
     {
         question: "What has a gravitational pull so strong that even light cannot escape it?",
         choices: ["Quasar", "Nebula", "Black Hole", "Red Giants"],
@@ -80,7 +80,7 @@ var gameQuestion = triviaQuestions[currentQuestion].question;
 var gameChoices = triviaQuestions[currentQuestion].choices;
 var gameAnswer = triviaQuestions[currentQuestion].answer;
     
-var timerNumber = 5;
+var timerNumber = 30;
 var intervalID;
 
                     // ------------ functions ---------------
@@ -128,11 +128,15 @@ function clearGame () {
 function gameEnd () {
     clearGame();
     $("#timer").empty();
-    $("#reset-button").show();
+    $("#reset").show();
     $("#correct-answers").html("Correct Answers:" + " " + correctAnswers);
     $("#wrong-answers").html("Wrong Answers:" + " " + wrongAnswers);
     $("#unanswered").html("Unanswered:" + " " + unanswered);
 }
+
+// function gameReset () {
+//     $("#start-button").show();
+// }
 
 // ------------------------ Timer -------------------------
 
@@ -161,7 +165,7 @@ function stop () {
 
 function timeOut () {
     clearInterval(intervalID);
-    timerNumber = 5;
+    timerNumber = 30;
     displayQuestionAndChoices();
     clearGame();
 }
@@ -169,11 +173,10 @@ function timeOut () {
 // ---------------------- Game Start ------------------------
 function startGame() {
 
-    $("#reset").hide()
-    
+    // $("#start").show();
+    $("#reset").hide();
 
     $(document).ready(function(){
-        // $("#timer").html(timerNumber);
         
         $("#start-button").click(function(){
             $("#timer").html(timerNumber);
@@ -181,6 +184,7 @@ function startGame() {
             $("#start-button").remove();
             displayQuestionAndChoices();
         });
+
         $("#choices").click(function(event){
             gameAnswer = triviaQuestions[currentQuestion].answer;
             var userGuess = $(event.target).attr("data-choices");
@@ -206,66 +210,48 @@ function startGame() {
                 $("#images").html("<img src=" + images[currentImage] + " width='200px'>");
                 stop();
             }
+            
+            
 
             currentQuestion++;
             currentImage++;
             setTimeout(timeOut, 3000);
 
             if (currentQuestion === 10) {
+                // timeOut();
                 $("#images").html("<img src=" + images[currentImage] + " width='200px'>");
-                setTimeout(timeOut, 3000);
+                // setTimeout(timeOut, 3000);
                 clearGame();
                 gameEnd();
             }
-            
-        });
 
+        });
         
+        $("#reset-button").click(function() {
+            $("#correct-answers").empty();
+            $("#wrong-answers").empty();
+            $("#unanswered").empty();
+            startGame();
+            // gameReset();    
+            // $("#start-button").show();
+        });
     });
 }
 startGame();
 
+// ********** Pseuocode for what is not complete **********
 
-                                   // to do 
+// need to add functional reset button to final display page 
+//     -was able to get the button to show up on display page and work 
+//      on click 
+//     -instead of game restarting on reset click - it just disappears 
+//      which leads me to believe it's working and I'm missing something 
+//      more in my reset-button code.  Need to get back to start page
+//     -correct onclick event for game to restart when reset button is clicked
+//     -i'm also getting errors in console that I don't have enough time to fix
 
-// end of game stats display - function
+                                  
+                            // to do 
+
+// figure out reset button and start game issue 
 // reset game without refreshing page - function
-// curve heading 
-
-// at end of game show number of correct answers, incorrect answers
-//     unanswered and Start Over button
-// Start over DOES NOT reload page, it only restarts game
-
-
-//                  Questions/Answers/Images
-// --------------------------------------------------------------                        
-// What type of galaxy is the Milky Way galaxy?
-//     Spiral
-// assets/images/Milky_Way_Galaxy.jpg
-
-// What is the largest planet in our solar system? (FunFact - this planet also happens to be my favorite!)
-//     Jupiter
-
-// What is the smallest planet in our solar system? 
-//     Mercury
-
-// What has a gravitational pull so strong that even light cannot escape it?
-//     Black Hole
-
-// What is the Earth's Moon commonly referred to? Hint - It's Latin for Moon and the name of one of my pups.
-//     Luna
-
-// How much time does it take for the Sun's Rays to reach Earth?
-//     8 minutes
-
-// Which planet has approximately the same landmass as Earth?
-//     Mars
-
-// When was Pluto reclassified from a planet to a dwarf planet? (You're still a planet to me little buddy)
-//     2006
-
-//  Which planet is known as the Morning Star or the Evening Star?
-//         VENUS
-
-// What was the first planet discovered with the use of a telescope?
-//     Uranus 

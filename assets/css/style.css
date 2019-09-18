@@ -43,8 +43,9 @@ h1 {
     /* border: 1px solid red; */
     width: 50%;
     position: absolute;
-    bottom: 175px;
-    left: 150px;
+    bottom: 100px;
+    left: 180px;
+    align-content: center;
     
 }
 
@@ -68,7 +69,7 @@ h1 {
 }
 
 .question-choices {
-    font-size: 1.5em;
+    font-size: 2em;
     font-family: 'Cute Font', cursive;
 }
 
