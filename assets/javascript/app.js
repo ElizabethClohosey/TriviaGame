@@ -23,47 +23,47 @@ var triviaQuestions = [
         answer: "Mercury",
     },
     // question 4
-    {
-        question: "What has a gravitational pull so strong that even light cannot escape it?",
-        choices: ["Quasar", "Nebula", "Black Hole", "Red Giants"],
-        answer: "Black Hole",
-    },
-    // question 5
-    {
-        question: "What is the Earth's Moon commonly referred to? Hint - It's Latin for Moon and the name of one of my pups",
-        choices: ["Sol", " Terra", " Belatrix", " Luna"],
-        answer: " Luna",
-    },
-    // question 6
-    {
-        question: "How much time does it take for the Sun's Rays to reach Earth?",
-        choices: ["24 hours", " 365 days", " 8 minutes", " 60 minutes"],
-        answer: " 8 minutes",
-    },
-    // question 7
-    {
-        question: "Which planet has approximately the same landmass as Earth?",
-        choices: ["Venus", " Uranus", " Mars", " Jupiter"],
-        answer: " Mars",
-    },
-    // question 8
-    {
-        question: "When was Pluto reclassified from a planet to a dwarf planet? (You're still a planet to me little buddy)",
-        choices: ["2006", " 1999", " 2009", " 2012"], 
-        answer: "2006",
-    },
-    // question 9
-    {
-        question: "Which planet is known as the Morning Star or the Evening Star?",
-        choices: ["Mars", " Mercury", " Saturn", " Venus"],
-        answer: " Venus",
-    },
-    // question 10
-    {
-        question: "What was the first planet discovered with the use of a telescope?",
-        choices: ["Uranus", " Mars", " Neptune", "Pluto"],
-        answer: "Uranus",
-    },
+    // {
+    //     question: "What has a gravitational pull so strong that even light cannot escape it?",
+    //     choices: ["Quasar", "Nebula", "Black Hole", "Red Giants"],
+    //     answer: "Black Hole",
+    // },
+    // // question 5
+    // {
+    //     question: "What is the Earth's Moon commonly referred to? Hint - It's Latin for Moon and the name of one of my pups",
+    //     choices: ["Sol", " Terra", " Belatrix", " Luna"],
+    //     answer: " Luna",
+    // },
+    // // question 6
+    // {
+    //     question: "How much time does it take for the Sun's Rays to reach Earth?",
+    //     choices: ["24 hours", " 365 days", " 8 minutes", " 60 minutes"],
+    //     answer: " 8 minutes",
+    // },
+    // // question 7
+    // {
+    //     question: "Which planet has approximately the same landmass as Earth?",
+    //     choices: ["Venus", " Uranus", " Mars", " Jupiter"],
+    //     answer: " Mars",
+    // },
+    // // question 8
+    // {
+    //     question: "When was Pluto reclassified from a planet to a dwarf planet? (You're still a planet to me little buddy)",
+    //     choices: ["2006", " 1999", " 2009", " 2012"], 
+    //     answer: "2006",
+    // },
+    // // question 9
+    // {
+    //     question: "Which planet is known as the Morning Star or the Evening Star?",
+    //     choices: ["Mars", " Mercury", " Saturn", " Venus"],
+    //     answer: " Venus",
+    // },
+    // // question 10
+    // {
+    //     question: "What was the first planet discovered with the use of a telescope?",
+    //     choices: ["Uranus", " Mars", " Neptune", "Pluto"],
+    //     answer: "Uranus",
+    // },
 ]; 
 
 // array of images  
@@ -80,7 +80,7 @@ var gameQuestion = triviaQuestions[currentQuestion].question;
 var gameChoices = triviaQuestions[currentQuestion].choices;
 var gameAnswer = triviaQuestions[currentQuestion].answer;
     
-var timerNumber = 2;
+var timerNumber = 5;
 var intervalID;
 
                     // ------------ functions ---------------
@@ -112,7 +112,14 @@ function clearQuestionAndChoices () {
     $("#choices").empty();
 }
 
-// function to display answers to question 
+function clearGame () {
+    $("#images").empty();
+    $("#answer").empty();
+    $("#alert-text").empty();
+    $("#alert-text-correctAnswer").empty();
+}
+
+// function to loop through and display 
 
  function displayAnswer() {
     for (var i = 0; i < gameAnswer.length; i++) {
@@ -120,7 +127,19 @@ function clearQuestionAndChoices () {
     }
 }
 
+function gameEnd () {
+    clearGame();
+    $("#timer").empty();
+    $("#reset-button").show();
+    $("#correct-answers").html("Correct Answers" + correctAnswers);
+    $("#wrong-answers").html("Wrong Answers" + wrongAnswers);
+    $("#unanswered").html("Unanswered" + unanswered);
+}
+
 // ------------------------ Timer -------------------------
+
+// timer countdown and timer === 0 function 
+
 function countDown () {
     gameAnswer = triviaQuestions[currentQuestion].answer;
     // clearInterval(intervalID);
@@ -143,8 +162,6 @@ function countDown () {
         currentImage++;
         setTimeout(timeOut, 3000);
     }
-
-    
 }
 
 function stop () {
@@ -153,21 +170,21 @@ function stop () {
 
 function timeOut () {
     clearInterval(intervalID);
-    timerNumber = 2;
+    timerNumber = 5;
     displayQuestionAndChoices();
+    clearGame();
     // countDown();
-    $("#images").empty();
-    $("#answer").empty();
-    $("#alert-text").empty();
-    $("#alert-text-correctAnswer").empty();
+    // $("#images").empty();
+    // $("#answer").empty();
+    // $("#alert-text").empty();
+    // $("#alert-text-correctAnswer").empty();
 }
-// hold triviaQuestions
-// empty images
-// empty text
-
 
 // ---------------------- Game Start ------------------------
 function startGame() {
+
+    $("#reset").hide()
+    
 
     $(document).ready(function(){
         // $("#timer").html(timerNumber);
@@ -203,12 +220,19 @@ function startGame() {
                 $("#images").html("<img src=" + images[currentImage] + " width='200px'>");
                 stop();
             }
-            
 
             currentQuestion++;
             currentImage++;
             setTimeout(timeOut, 3000);
+
+            if (currentQuestion === 3) {
+                clearGame();
+                gameEnd();
+            }
+            
         });
+
+        
     });
 }
 startGame();
@@ -216,9 +240,8 @@ startGame();
 
                                    // to do 
 
-// fix time === 0 conditional
-// end of game stats display
-// reset game without refreshing page
+// end of game stats display - function
+// reset game without refreshing page - function
 // curve heading 
 
 // at end of game show number of correct answers, incorrect answers

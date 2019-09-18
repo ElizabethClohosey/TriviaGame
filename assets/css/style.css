@@ -39,7 +39,7 @@ h1 {
     text-align:center;
 }
 
-#start-button {
+#start-button, #reset-button {
     /* border: 1px solid red; */
     width: 50%;
     position: absolute;
@@ -48,7 +48,7 @@ h1 {
     
 }
 
-#start {
+#start, #reset {
     font-family: 'Cute Font', cursive;
     width: 100%;
     background-color: black;
