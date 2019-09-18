@@ -15,17 +15,17 @@ body {
     margin-top: 2%;
     height: 400px;
     margin-left: 25%; 
-    /* padding-top: 5%; */
 }
 
 #timer {
     /* border: 1px solid red; */
+    font-family: 'Cute Font', cursive;
     height: 10%;
     width: 30%;
     margin-left: 35%;
     margin-bottom: 3%;
     text-align: center;
-    font-size: 2em;
+    font-size: 2.5em;
 }
 
 h1 {
@@ -54,11 +54,11 @@ h1 {
     background-color: black;
     opacity: .6;
     font-size: 2.5em;
-    /* position: absolute; */
 }
 
 #question {
-    font-size: 1.5em;
+    font-family: 'Cute Font', cursive;
+    font-size: 2.5em;
     width: 100%;
     text-align: center;
 }
@@ -68,7 +68,8 @@ h1 {
 }
 
 .question-choices {
-    font-size: 1em;
+    font-size: 1.5em;
+    font-family: 'Cute Font', cursive;
 }
 
 .question-choices:hover {
@@ -76,33 +77,21 @@ h1 {
     opacity: .6;
 }
 
-#alert-text {
-    font-size: 1.5em;
-    text-align: center;
-}
-
+#alert-text, 
 #answer {
-    font-size: 1.5em;
+    font-family: 'Cute Font', cursive;
+    font-size: 2em;
     text-align: center;
 }
 
 h3 {
     margin-top: 3%;
+    font-family: 'Cute Font', cursive;
+
 }
-
-
-
-/* #wins-losses {
-    border: 1px solid powderblue;
-    height: 15%;
-    width: 30%;
-    margin-left: 35%;
-    margin-bottom: 3%;
-} */
 
 img {
     padding-top: 2%;
-    /* height: 80%; */
     width: 40%;
     margin-left: 30%;
 }
@@ -112,7 +101,17 @@ button {
     border: none;
     background-color: inherit;
     padding: 14px 28px;
-    font-size: 16px;
     cursor: pointer;
     display: inline-block;
+}
+
+#alert-text-correctAnswer,
+#correct-answers,
+#wrong-answers,
+#unanswered {
+    font-family: 'Cute Font', cursive;
+    text-align: center;
+    font-size: 2em;
+    margin-top: 1%;
+
 }

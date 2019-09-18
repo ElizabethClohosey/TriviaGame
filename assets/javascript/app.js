@@ -23,47 +23,47 @@ var triviaQuestions = [
         answer: "Mercury",
     },
     // question 4
-    // {
-    //     question: "What has a gravitational pull so strong that even light cannot escape it?",
-    //     choices: ["Quasar", "Nebula", "Black Hole", "Red Giants"],
-    //     answer: "Black Hole",
-    // },
-    // // question 5
-    // {
-    //     question: "What is the Earth's Moon commonly referred to? Hint - It's Latin for Moon and the name of one of my pups",
-    //     choices: ["Sol", " Terra", " Belatrix", " Luna"],
-    //     answer: " Luna",
-    // },
-    // // question 6
-    // {
-    //     question: "How much time does it take for the Sun's Rays to reach Earth?",
-    //     choices: ["24 hours", " 365 days", " 8 minutes", " 60 minutes"],
-    //     answer: " 8 minutes",
-    // },
-    // // question 7
-    // {
-    //     question: "Which planet has approximately the same landmass as Earth?",
-    //     choices: ["Venus", " Uranus", " Mars", " Jupiter"],
-    //     answer: " Mars",
-    // },
-    // // question 8
-    // {
-    //     question: "When was Pluto reclassified from a planet to a dwarf planet? (You're still a planet to me little buddy)",
-    //     choices: ["2006", " 1999", " 2009", " 2012"], 
-    //     answer: "2006",
-    // },
-    // // question 9
-    // {
-    //     question: "Which planet is known as the Morning Star or the Evening Star?",
-    //     choices: ["Mars", " Mercury", " Saturn", " Venus"],
-    //     answer: " Venus",
-    // },
-    // // question 10
-    // {
-    //     question: "What was the first planet discovered with the use of a telescope?",
-    //     choices: ["Uranus", " Mars", " Neptune", "Pluto"],
-    //     answer: "Uranus",
-    // },
+    {
+        question: "What has a gravitational pull so strong that even light cannot escape it?",
+        choices: ["Quasar", "Nebula", "Black Hole", "Red Giants"],
+        answer: "Black Hole",
+    },
+    // question 5
+    {
+        question: "What is the Earth's Moon commonly referred to? Hint - It's Latin for Moon and the name of one of my pups",
+        choices: ["Sol", " Terra", " Belatrix", " Luna"],
+        answer: " Luna",
+    },
+    // question 6
+    {
+        question: "How much time does it take for the Sun's Rays to reach Earth?",
+        choices: ["24 hours", " 365 days", " 8 minutes", " 60 minutes"],
+        answer: " 8 minutes",
+    },
+    // question 7
+    {
+        question: "Which planet has approximately the same landmass as Earth?",
+        choices: ["Venus", " Uranus", " Mars", " Jupiter"],
+        answer: " Mars",
+    },
+    // question 8
+    {
+        question: "When was Pluto reclassified from a planet to a dwarf planet? (You're still a planet to me little buddy)",
+        choices: ["2006", " 1999", " 2009", " 2012"], 
+        answer: "2006",
+    },
+    // question 9
+    {
+        question: "Which planet is known as the Morning Star or the Evening Star?",
+        choices: ["Mars", " Mercury", " Saturn", " Venus"],
+        answer: " Venus",
+    },
+    // question 10
+    {
+        question: "What was the first planet discovered with the use of a telescope?",
+        choices: ["Uranus", " Mars", " Neptune", "Pluto"],
+        answer: "Uranus",
+    },
 ]; 
 
 // array of images  
@@ -93,8 +93,6 @@ function displayQuestionAndChoices () {
     gameQuestion = triviaQuestions[currentQuestion].question;
     gameChoices = triviaQuestions[currentQuestion].choices;
     $("#question").html(gameQuestion);
-
-    // $("#choices").html(result);
 
         for (var i = 0; i < gameChoices.length; i++) {
             // THANK YOU IAN!!!! 
@@ -131,9 +129,9 @@ function gameEnd () {
     clearGame();
     $("#timer").empty();
     $("#reset-button").show();
-    $("#correct-answers").html("Correct Answers" + correctAnswers);
-    $("#wrong-answers").html("Wrong Answers" + wrongAnswers);
-    $("#unanswered").html("Unanswered" + unanswered);
+    $("#correct-answers").html("Correct Answers:" + " " + correctAnswers);
+    $("#wrong-answers").html("Wrong Answers:" + " " + wrongAnswers);
+    $("#unanswered").html("Unanswered:" + " " + unanswered);
 }
 
 // ------------------------ Timer -------------------------
@@ -142,22 +140,15 @@ function gameEnd () {
 
 function countDown () {
     gameAnswer = triviaQuestions[currentQuestion].answer;
-    // clearInterval(intervalID);
-    // intervalID = setInterval(countDown, 1000);
     timerNumber--;
     $("#timer").html(timerNumber);
     if (timerNumber === 0) {
-        // currentImage++;
         unanswered++;
         stop();
         $("#alert-text").html("Time Is Up");
-        // $("#alert-text-correctAnswer").html(displayAnswer());
         displayAnswer(); // show correct answer
-        // try below      ******************************
         $("#images").html("<img src=" + images[currentImage] + " width='200px'>");
-        // $("#images").html("<img src=" + images[5] + " width='200px'>"); // showimage
         clearQuestionAndChoices(); // clear Q/A
-        // setTimeout(timeOut, 3000);
         currentQuestion++;
         currentImage++;
         setTimeout(timeOut, 3000);
@@ -173,11 +164,6 @@ function timeOut () {
     timerNumber = 5;
     displayQuestionAndChoices();
     clearGame();
-    // countDown();
-    // $("#images").empty();
-    // $("#answer").empty();
-    // $("#alert-text").empty();
-    // $("#alert-text-correctAnswer").empty();
 }
 
 // ---------------------- Game Start ------------------------
@@ -225,7 +211,9 @@ function startGame() {
             currentImage++;
             setTimeout(timeOut, 3000);
 
-            if (currentQuestion === 3) {
+            if (currentQuestion === 10) {
+                $("#images").html("<img src=" + images[currentImage] + " width='200px'>");
+                setTimeout(timeOut, 3000);
                 clearGame();
                 gameEnd();
             }
